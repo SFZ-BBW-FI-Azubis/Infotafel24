@@ -1,4 +1,4 @@
-# Infotafel23
+# Infotafel24
 Ziel: Erstellung einer modernen und übersichtlichen Infotafel mit folgenden Seiten:
 
 Wetter

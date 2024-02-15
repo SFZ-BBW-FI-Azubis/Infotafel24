@@ -15,11 +15,11 @@ Deployment: Veröffentlichung auf einem Webserver
 
 Zeitplan:
 
-Sprint 1: Konzeption und Design der neuen Infotafel
-Sprint 2: Implementierung der Wetter- und Fahrplanseite
-Sprint 3: Implementierung der Stundenplan- und Essenplanseite
-Sprint 4: Testen und Fehlerbehebung
-Sprint 5: Deployment und Release
+Konzeption und Design der neuen Infotafel
+Implementierung der Wetter- und Fahrplanseite
+Implementierung der Stundenplan- und Essenplanseite
+Testen und Fehlerbehebung
+Deployment und Release
 
 Voraussetzungen:
 

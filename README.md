@@ -1,47 +1,70 @@
-# Infotafel24
-Ziel: Erstellung einer modernen und übersichtlichen Infotafel mit folgenden Seiten:
+# Getting Started with Create React App
 
-Wetter
-Fahrplan
-Stundenplan
-Essensplan
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Technische Umsetzung:
+## Available Scripts
 
-Frontend: React
-Entwicklungsumgebung: Visual Studio Code
-Versionierung: Git
-Deployment: Veröffentlichung auf einem Webserver
+In the project directory, you can run:
 
-Zeitplan:
+### `npm start`
 
-Konzeption und Design der neuen Infotafel
-Implementierung der Wetter- und Fahrplanseite
-Implementierung der Stundenplan- und Essenplanseite
-Testen und Fehlerbehebung
-Deployment und Release
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Voraussetzungen:
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Grundlegende Kenntnisse in React
-Erfahrung mit Visual Studio Code
-Kenntnisse in Git
-Zugriff auf einen Webserver
+### `npm test`
 
-Ressourcen:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-React Dokumentation: [[ungültige URL entfernt]]([ungültige URL entfernt])
-Visual Studio Code: https://code.visualstudio.com/
-Git: https://git-scm.com/
+### `npm run build`
 
-Aufgaben:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Erstelle ein Wireframe für die neue Infotafel.
-Implementiere die einzelnen Seiten mit React.
-Verwende CSS, um die Infotafel zu gestalten.
-Teste die Infotafel auf verschiedenen Endgeräten.
-Stelle die Infotafel auf einem Webserver bereit.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Kommunikation:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Die Kommunikation erfolgt über Teams und Notion.
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

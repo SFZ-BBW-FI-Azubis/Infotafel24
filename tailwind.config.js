@@ -11,11 +11,12 @@ module.exports = {
        'primary': '#ffffff',
        'secondary': '#e5e5e5',
        'accent': '#ffc107',
+       'site-background': '#222222',
       },
     },
 
     fontFamily: {
-      montserrat: ['Montserrat', 'sans-serif'],
+      roboto: ['Roboto', 'sans-serif'],
       oswald: ['Oswald', 'sans-serif']
     },
   },

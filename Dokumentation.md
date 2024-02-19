@@ -1,1 +1,1 @@
-#Dokumentationsbereich
+#Dokumentation

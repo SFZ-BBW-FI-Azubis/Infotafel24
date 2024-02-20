@@ -10,7 +10,7 @@ function News() {
         document.cookie = `selectedItem=${item}; path=/`;
     };
 
-    const items = ['Fachinformatiker', 'Gärtner', 'E-Commerce', 'Kaufleute', 'Sonstige'];
+    const items = ['Fachinformatiker', 'Gärtner', 'E-Commerce', 'Kaufleute', 'Niclas', 'Sonstige'];
 
     useEffect(() => {
         // Disable scrolling

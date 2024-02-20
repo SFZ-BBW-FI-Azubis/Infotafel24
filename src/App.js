@@ -25,4 +25,4 @@ function App() {
 
 export default App;
 
-console.log("sheesh bro")
+console.log("sheesh bro");

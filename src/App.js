@@ -10,6 +10,7 @@ import News from './pages/News.js';
 
 function App() {  
   return (
+    <div className="max-h-screen min-h-screen flex flex-col">
     <Router>
       <Navbar />
       <Routes>
@@ -20,6 +21,7 @@ function App() {
         <Route path="wetter" element={<Wetter/>} />
       </Routes>
     </Router>
+    </div>
   );
 }
 

@@ -6,13 +6,10 @@ import sun from "../assets/weather/animatedLogos/sun.json";
 import haze from "../assets/weather/animatedLogos/haze.json";
 import windyWeather from "../assets/weather/animatedLogos/windy-weather.json";
 import lightningBolt from "../assets/weather/animatedLogos/lightning-bolt.json";
-
 //Clouds
 import partlyCloudy from "../assets/weather/animatedLogos/partly-cloudy-day.json";
 import cloud from "../assets/weather/animatedLogos/cloud.json";
 import cloudLightning from "../assets/weather/animatedLogos/cloud-lightning.json";
-
-
 //Rain
 import rainCloud from "../assets/weather/animatedLogos/rain-cloud.json";
 import storm from "../assets/weather/animatedLogos/storm.json";
@@ -26,6 +23,10 @@ import lightSnow from "../assets/weather/animatedLogos/light-snow.json";
 import fog from "../assets/weather/animatedLogos/fog.json";
 
 
+
+
+
+//Weather interpretation codes
 
 const weatherInterpretationCodes = {
   0: { desc: 'Klarer Himmel', animatedIcon: sun },

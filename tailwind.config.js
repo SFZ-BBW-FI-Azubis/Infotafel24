@@ -13,6 +13,9 @@ module.exports = {
        'accent': '#ffc107',
        'site-background': '#222222',
       },
+      backgroundImage: {
+        'weather-stars' : 'url("./assets/stars.jpg")',
+      }
     },
 
     fontFamily: {

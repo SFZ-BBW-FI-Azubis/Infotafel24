@@ -40,62 +40,53 @@ function News() {
   }, []);
 
   return (
-    <div
-      className="bg-site-background min-h-screen flex flex-col bg-news-it bg-cover bg-center bg-no-repeat"
-    >
-      <div className="navbar flex justify-center">
-        <div className="flex text-white border-b-2 border-b-white rounded-sm text-3xl font-thin pt-10 pb-2 flex-wrap">
-          {items.map((item, index) => (
-            <button
-              key={index}
-              className={`px-4 py-2 ml-10 uppercase ${
-                selectedItem === item ? "selected font-normal" : ""
-              }`}
-              onClick={() => handleItemClick(item)}
-              style={{ cursor: "pointer" }}
-            >
-              {item}
-            </button>
-          ))}
+    <div className="min-h-screen flex flex-col bg-news-it bg-cover bg-center bg-no-repeat relative">
+      <div className="bg-black flex bg-opacity-60 h-screen w-full flex-col">
+        <div className="navbar flex justify-center">
+          <div className="flex text-white border-b-2 border-b-white rounded-sm text-3xl font-thin pt-10 pb-2 flex-wrap">
+            {items.map((item, index) => (
+              <button
+                key={index}
+                className={`px-4 py-2 ml-10 uppercase ${
+                  selectedItem === item ? "selected font-normal" : ""
+                }`}
+                onClick={() => handleItemClick(item)}
+                style={{ cursor: "pointer" }}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-      <div>
-        {selectedItem === "Fachinformatiker" && (
-          <div className="items-container">
-            <p>This is a placeholder paragraph for Fachinformatiker.</p>
-            <img src="placeholder-image.jpg" alt="Placeholder Image" />
-          </div>
-        )}
-        {selectedItem === "Gärtner" && (
-          <div className="items-container">
-            <p>This is a placeholder paragraph for Gärtner.</p>
-            <img src="placeholder-image.jpg" alt="Placeholder Image" />
-          </div>
-        )}
-        {selectedItem === "E-Commerce" && (
-          <div className="items-container">
-            <p>This is a placeholder paragraph for E-Commerce.</p>
-            <img src="placeholder-image.jpg" alt="Placeholder Image" />
-          </div>
-        )}
-        {selectedItem === "Kaufleute" && (
-          <div className="items-container">
-            <p>This is a placeholder paragraph for Kaufleute.</p>
-            <img src="placeholder-image.jpg" alt="Placeholder Image" />
-          </div>
-        )}
-        {selectedItem === "Niclas" && (
-          <div className="items-container">
-            <p>This is a placeholder paragraph for Niclas.</p>
-            <img src="placeholder-image.jpg" alt="Placeholder Image" />
-          </div>
-        )}
-        {selectedItem === "Sonstige" && (
-          <div className="items-container">
-            <p>This is a placeholder paragraph for Sonstige.</p>
-            <img src="placeholder-image.jpg" alt="Placeholder Image" />
-          </div>
-        )}
+        <div>
+          {selectedItem && (
+            <div className="items-container flex flex-col items-center">
+              <div className="flex">
+                <p
+                  style={{
+                    color: "white",
+                    marginTop: "3rem",
+                    width: "600px",
+                    height: "600px",
+                  }}
+                >
+                  placeholder text for {selectedItem}.
+                </p>
+                <img
+                  src={require("../assets/placeholder/placeholder.png").default}
+                  alt="placeholderimg"
+                  className="ml-4 mt-2"
+                  style={{
+                    color: "white",
+                    width: "400px",
+                    height: "600px",
+                    marginTop: "3rem",
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

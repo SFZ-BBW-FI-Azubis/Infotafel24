@@ -60,11 +60,40 @@ function News() {
         </div>
       </div>
       <div>
-        {selectedItem && (
+        {selectedItem === "Fachinformatiker" && (
           <div className="items-container">
-            {selectedItem}
-            {/* Render items corresponding to the chosen topic */}
-            {/* Add your logic here */}
+            <p>This is a placeholder paragraph for Fachinformatiker.</p>
+            <img src="placeholder-image.jpg" alt="Placeholder Image" />
+          </div>
+        )}
+        {selectedItem === "Gärtner" && (
+          <div className="items-container">
+            <p>This is a placeholder paragraph for Gärtner.</p>
+            <img src="placeholder-image.jpg" alt="Placeholder Image" />
+          </div>
+        )}
+        {selectedItem === "E-Commerce" && (
+          <div className="items-container">
+            <p>This is a placeholder paragraph for E-Commerce.</p>
+            <img src="placeholder-image.jpg" alt="Placeholder Image" />
+          </div>
+        )}
+        {selectedItem === "Kaufleute" && (
+          <div className="items-container">
+            <p>This is a placeholder paragraph for Kaufleute.</p>
+            <img src="placeholder-image.jpg" alt="Placeholder Image" />
+          </div>
+        )}
+        {selectedItem === "Niclas" && (
+          <div className="items-container">
+            <p>This is a placeholder paragraph for Niclas.</p>
+            <img src="placeholder-image.jpg" alt="Placeholder Image" />
+          </div>
+        )}
+        {selectedItem === "Sonstige" && (
+          <div className="items-container">
+            <p>This is a placeholder paragraph for Sonstige.</p>
+            <img src="placeholder-image.jpg" alt="Placeholder Image" />
           </div>
         )}
       </div>

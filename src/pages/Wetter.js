@@ -101,7 +101,7 @@ function Wetter() {
 
   if (loading) {
     return (
-      <div className="bg-bg-weather-day bg-cover min-h-full h-screen flex flex-col justify-center items-center">
+      <div className="bg-weatherday bg-cover min-h-full h-screen flex flex-col justify-center items-center">
         <div className="text-white text-2xl">Loading...</div>
       </div>
     );
@@ -111,7 +111,7 @@ function Wetter() {
   // Add additional checks for missing data
   if (!weatherData || !currentWeatherData || !hourlyWeatherData) {
     return (
-      <div className="bg-bg-weather-day bg-cover min-h-full h-screen flex flex-col justify-center items-center">
+      <div className="bg-weatherday bg-cover min-h-full h-screen flex flex-col justify-center items-center">
         <div className="text-white text-2xl">Error: Data not available</div>
       </div>
     );

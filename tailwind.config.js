@@ -21,7 +21,7 @@ module.exports = {
         'weather-day' : 'url("./assets/weather/bgweatherday.jpg")',
         'weather-night' : 'url("./assets/weather/bgweathernight.jpg")',
         'weather-stars' : 'url("./assets/stars.jpg")',
-        'bg-weather-day': 'url("./assets/weather/bg-weather-day.jpg")',
+        'weather-day': 'url("./assets/weather/bgweatherday.jpg")',
       }
     },
 

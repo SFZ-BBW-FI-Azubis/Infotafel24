@@ -1,10 +1,11 @@
 import React from "react";
+import busIcon from "../assets/busplan/bus.svg";
 
 function Fahrplan() {
   return (
-    <div className=" bg-site-background container mx-auto px-4 text-white min-h-screen min-w-screen">
+    <div className=" bg-site-background mx-auto px-4 text-white flex-grow w-screen">
       <div className="p-4 flex justify-center items-center">
-        <img src="../assets/busplan/bus.svg" alt="Image" className="absolute top-0 left-0" />
+        <img src={busIcon} alt="Image" className="absolute top-0 left-0" />
         <table className="w-full table-auto border-2 border-white mx-auto">
           <thead>
             <tr>

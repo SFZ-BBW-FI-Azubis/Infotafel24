@@ -8,4 +8,28 @@
     body {
       @apply font-roboto;
     }
-  }
+    ::-webkit-scrollbar {
+      @apply w-2 h-2 bg-gray-700;
+    }
+    ::-webkit-scrollbar-thumb {
+      @apply bg-gray-500 rounded-md;
+    }
+    
+    @media (max-width: 768px) {
+      ::-webkit-scrollbar {
+        @apply w-4 h-4 bg-gray-700;
+      }
+      ::-webkit-scrollbar-thumb {
+        @apply bg-gray-500 rounded-md;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      ::-webkit-scrollbar {
+        @apply w-6 h-6 bg-gray-700;
+      }
+      ::-webkit-scrollbar-thumb {
+        @apply bg-gray-500 rounded-md;
+      }
+    }
+}

@@ -7,6 +7,14 @@ const cors = require('cors');
 const app = express();
 const PORT = 8000;
 
+/*const latitude = 64.78689907427604
+const longitude = -46.8052011398324*/
+
+const latitude = 50.84310553905255 
+const longitude = 12.875960703035425
+
+
+
 app.use(cors());
 
 const CACHE_FILE_CURRENT_WEATHER = path.join(__dirname, 'current_weather_cache.json');
@@ -16,7 +24,7 @@ const CACHE_FILE_HOURLY_FORECAST = path.join(__dirname, 'hourly_forecast_cache.j
 // Function to fetch current weather data from the online API
 const fetchCurrentWeatherData = async () => {
   try {
-    const response = await axios.get('https://api.open-meteo.com/v1/dwd-icon?latitude=52.52&longitude=13.41&current=temperature_2m,apparent_temperature,rain,weather_code,wind_speed_10m,wind_direction_10m&timeformat=unixtime&timezone=Europe%2FBerlin');
+    const response = await axios.get(`https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,apparent_temperature,rain,weather_code,wind_speed_10m,wind_direction_10m&timeformat=unixtime&timezone=Europe%2FBerlin`);
     return response.data;
   } catch (error) {
     console.error('Error fetching current weather data:', error);
@@ -27,7 +35,7 @@ const fetchCurrentWeatherData = async () => {
 // Function to fetch forecast data from the online API
 const fetchForecastData = async () => {
   try {
-    const response = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=50.8357&longitude=12.9292&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,rain_sum,wind_speed_10m_max&timeformat=unixtime&timezone=Europe%2FBerlin');
+    const response = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,rain_sum,wind_speed_10m_max&timeformat=unixtime&timezone=Europe%2FBerlin`);
     return response.data;
   } catch (error) {
     console.error('Error fetching forecast data:', error);
@@ -37,7 +45,7 @@ const fetchForecastData = async () => {
 
 const fetchHourlyForecastData = async () => {
   try {
-    const response = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,rain,weather_code&timeformat=unixtime&timezone=Europe%2FBerlin&forecast_days=3')
+    const response = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,rain,weather_code&timeformat=unixtime&timezone=Europe%2FBerlin&forecast_days=3`)
     return response.data;
   } catch (error) {
     console.error('Error fetching hourly forecast data:', error);

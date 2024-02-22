@@ -15,6 +15,7 @@ module.exports = {
       },
       backgroundImage: {
         'weather-stars' : 'url("./assets/stars.jpg")',
+        'bg-weather-day': 'url("./assets/weather/bg-weather-day.jpg")',
       }
     },
 

@@ -14,6 +14,12 @@ module.exports = {
        'site-background': '#222222',
       },
       backgroundImage: {
+        'news-it' : 'url("./assets/news/bgnewsit.jpg")',
+        'news-gardening' : 'url("./assets/news/bgnewsgardening.jpg")',
+        'schoolplane' : 'url("./assets/schoolplan/bgschoolplan.jpg")',
+        'foodplan' : 'url("./assets/food/bgfood.jpg")',
+        'weather-day' : 'url("./assets/weather/bgweatherday.jpg")',
+        'weather-night' : 'url("./assets/weather/bgweathernight.jpg")',
         'weather-stars' : 'url("./assets/stars.jpg")',
         'bg-weather-day': 'url("./assets/weather/bg-weather-day.jpg")',
       }

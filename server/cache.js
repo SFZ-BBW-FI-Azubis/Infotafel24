@@ -305,7 +305,12 @@ app.get('/cache/food', async (req, res) => {
   const token = "bxe9h5h013rp29vcz1jbjkst7fwnqupl"
   try {
     console.log("Fetching speiseplan data...")
-    const response = await axios.get("https://www.besser-verpflegt.de");
+    const response = await axios.get("https://www.besser-verpflegt.de/kunden/essen/2024/8/", {
+      headers: {
+        "Cookie": `sessionid=${token}`
+      }
+    });
+
 
     console.log("Response:", response.data);
     res.json(response.data);
@@ -317,10 +322,17 @@ app.get('/cache/food', async (req, res) => {
 
 
 
+/*function execute() {
+  return gapi.client.search.cse.list({
+    "cx": "b36d8eb65f0024130",
+    "imgType": "photo",
+    "num": 5,
+    "q": "Julian Scheibel",
+    "searchType": "image"
+  })*/
 
 
-
-
+// Google JSON Search API: AIzaSyDPerw4_0S1-qOjJBL8LAurFqbjR0xSJZM
 
 
 

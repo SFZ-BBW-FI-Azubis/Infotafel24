@@ -40,7 +40,7 @@ function News() {
   }, []);
 
   return (
-    <div className={`min-h-screen flex flex-col bg-${selectedItem ? selectedItem : ""} bg-cover bg-center bg-no-repeat relative`}>
+    <div className={`min-h-screen flex flex-col bg-Fachinformatiker bg-cover bg-center bg-no-repeat relative`}>
       <div className="bg-black flex bg-opacity-60 h-screen w-full flex-col">
         <div className="navbar flex justify-center">
           <div className="flex text-white border-b-2 border-b-white rounded-sm text-3xl font-thin pt-10 pb-2 flex-wrap">

@@ -227,7 +227,7 @@ const weatherInterpretationCodes = {
     }
   },
   75: {
-    "day":{
+    "day":{ 
       desc: "Starker Schneefall",
       animatedIcon: await importAnimatedIcon('overcast-day-snow'),
       staticIcon: await importStaticIcon("snow-storm"),

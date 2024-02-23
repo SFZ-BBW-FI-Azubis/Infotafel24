@@ -73,7 +73,7 @@ function Wetter() {
   }
 
   return (
-    <div className="bg-bg-weather-day bg-cover min-h-full h-screen flex flex-col flex-grow items-center">
+    <div className="bg-weather-day bg-cover min-h-full h-screen flex flex-col flex-grow items-center">
       <div className="bg-black bg-opacity-80 flex h-full w-full justify-center items-center flex-col">
         {/* Current Weather */}
         <CurrentWeatherComponent currentWeatherData={currentWeatherData} />

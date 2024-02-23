@@ -118,7 +118,7 @@ function Fahrplan() {
           <div className="w-full flex justify-center items-center flex-col">
             <p className="text-4xl">62</p>
             <div className="flex flex-row">
-              {busplanData["62"].departureTimes.map((time, index) => (
+              {busplanData["62"].departureTimes.slice(0, 4).map((time, index) => (
                 <div key={index} className="mr-8 text-2xl">
                   {time} <Icon as={ArrowRight} w={6} h={6} />
                 </div>
@@ -127,11 +127,6 @@ function Fahrplan() {
           </div>
         </AccordionSummary>
         <AccordionDetails className="flex flex-row text-black">
-          {busplanData["62"].departureTimes.map((time, index) => (
-            <div key={index} className="mr-8 text-2xl">
-              {time}
-            </div>
-          ))}
         </AccordionDetails>
       </Accordion>
     </div>

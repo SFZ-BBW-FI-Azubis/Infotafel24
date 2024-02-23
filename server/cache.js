@@ -214,7 +214,7 @@ function parseHTML(html) {
   const $ = cheerio.load(html);
   const data = [];
   $("div.std3_departure-line").each((index, element) => {
-    const lineNr = $(element).find(".std3_dm-mot-info a").text().trim().replace("Stadtbus", "");
+    const lineNr = $(element).find(".std3_dm-mot-info a").text().trim().replace(/[^0-9]/g, '').substring(2, 0)
     const desc = $(element).find(".std3_dm-mot-info").text().trim().replace("Stadtbus", "").replace(/\d+/g, '');
     const time = $(element).find(".std3_dm-time:first").text().trim();
     const realtime = $(element).find(".std3_realtime-column").text().trim();
@@ -268,16 +268,17 @@ app.get('/cache/busplan', async (req, res) => {
     if (fs.existsSync(CACHE_FILE_BUSPLAN)) {
       const cachedData = JSON.parse(fs.readFileSync(CACHE_FILE_BUSPLAN, 'utf8'));
       const busKeys = Object.keys(cachedData.busData)
-      console.log("Cached data:", cachedData.busData["31"].departureTimes[0]);
+      //console.log("Cached data:", cachedData.busData["31"].departureTimes[0]);
 
       const anyBusDepart = busKeys.some(key => {
         const entry = cachedData.busData[key];
         const departureTime = new Date(`${currentDate.toDateString()} ${entry.departureTimes[0]}`).getTime();
-        if (currentDate.getTime() - departureTime >= 60 * 1000) {
+        console.log("Departure time:", departureTime - currentDate.getTime() >= 60 * 1000);
+        if (currentDate.getTime() - departureTime[0] >= 60 * 1000) {
           console.log("Bus already departed:", entry);
         }
         //console.log(departureTime, currentDate.getTime())
-        return currentDate.getTime() - departureTime >= 60 * 1000
+        return departureTime - currentDate.getTime() >= 60 * 1000
       })
 
       if (!anyBusDepart ) {

@@ -300,6 +300,31 @@ app.get('/cache/busplan', async (req, res) => {
 }
 });
   
+
+app.get('/cache/food', async (req, res) => {
+  const token = "bxe9h5h013rp29vcz1jbjkst7fwnqupl"
+  try {
+    console.log("Fetching speiseplan data...")
+    const response = await axios.get("https://www.besser-verpflegt.de");
+
+    console.log("Response:", response.data);
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching speiseplan data:", error);
+    throw error;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

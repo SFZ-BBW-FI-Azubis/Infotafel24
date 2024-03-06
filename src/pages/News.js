@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { fetchLatestNews } from "../newsapi/newsapi";
 
 function News() {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleItemClick = (item) => {
-    console.log("Clicked item:", item);
     setSelectedItem(item);
     // Save selected item in cookies
     document.cookie = `selectedItem=${item}; path=/`;
@@ -32,6 +34,17 @@ function News() {
       const selectedItem = selectedItemCookie.split("=")[1];
       setSelectedItem(selectedItem);
     }
+
+    // Fetch latest news when component mounts
+    fetchLatestNews()
+      .then((fetchedNews) => {
+        setNews(fetchedNews);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching news:", error);
+        setLoading(false);
+      });
 
     // Re-enable scrolling when component is unmounted
     return () => {
@@ -61,29 +74,37 @@ function News() {
         <div>
           {selectedItem && (
             <div className="items-container flex flex-col items-center">
-              <div className="flex">
-                <p
-                  style={{
+              {loading ? (
+                <p>Loading...</p>
+              ) : (
+                <div className="flex">
+                  <div className="news-container flex flex-col items-center"
+                  style={{ 
                     color: "white",
-                    marginTop: "3rem",
-                    width: "600px",
-                    height: "600px",
                   }}
-                >
-                  {selectedItem}
-                </p>
-                <img
-                  src="./assets/placeholder/placeholder.png"
-                  alt="placeholderimg"
-                  className="ml-4 mt-2"
-                  style={{
-                    color: "white",
-                    width: "400px",
-                    height: "600px",
-                    marginTop: "3rem",
-                  }}
-                />
-              </div>
+                  >
+                    {news.map((item, index) => (
+                      <div key={index}>
+                        <h2><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a></h2>
+                        <p>Author: {item.by}</p>
+                        <p>Time: {new Date(item.time * 1000).toLocaleString()}</p>
+                        <p>URL: <a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></p> {/* Render the URL */}
+                      </div>
+                    ))}
+                  </div>
+                  <img
+                    src="./assets/placeholder/placeholder.png"
+                    alt="placeholderimg"
+                    className="ml-4 mt-2"
+                    style={{
+                      color: "white",
+                      width: "400px",
+                      height: "600px",
+                      marginTop: "3rem",
+                    }}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -30,7 +30,7 @@ export function fetchLatestITNews() {
 
 export function fetchLatestGardeningNews() {
   const apiKey = "60325dcadfc0454fb43f8acdb30fd959";
-  const apiUrl = `https://newsapi.org/v2/everything?q=gardening&pageSize=1&apiKey=${apiKey}`;
+  const apiUrl = `https://newsapi.org/v2/top-headlines?country=de&category=sports&pageSize=1&apiKey=${apiKey}`;
 
   return axios
     .get(apiUrl)
@@ -58,7 +58,7 @@ export function fetchLatestGardeningNews() {
 
 export function fetchLatestCommerceNews() {
   const apiKey = "60325dcadfc0454fb43f8acdb30fd959";
-  const apiUrl = `https://newsapi.org/v2/everything?q=ecommerce&pageSize=1&apiKey=${apiKey}`;
+  const apiUrl = `https://newsapi.org/v2/top-headlines?country=de&category=business&pageSize=1&apiKey=${apiKey}`;
 
   return axios
     .get(apiUrl)
@@ -80,6 +80,34 @@ export function fetchLatestCommerceNews() {
     })
     .catch((error) => {
       console.error("Error fetching ecommerce news:", error);
+      throw error;
+    });
+}
+
+export function fetchLatestGeneralNews() {
+  const apiKey = "60325dcadfc0454fb43f8acdb30fd959";
+  const apiUrl = `https://newsapi.org/v2/top-headlines?country=de&pageSize=1&apiKey=${apiKey}`;
+
+  return axios
+    .get(apiUrl)
+    .then((response) => {
+      if (response.data && response.data.articles) {
+        const generalNews = response.data.articles.map((article) => ({
+          title: article.title,
+          description: article.description,
+          url: article.url,
+          imageUrl: article.urlToImage,
+          publishedAt: article.publishedAt,
+          content: article.content
+        }));
+        return generalNews;
+      } else {
+        console.error("No articles found in the response.");
+        return [];
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching general news:", error);
       throw error;
     });
 }

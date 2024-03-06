@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchLatestITNews, fetchLatestGardeningNews, fetchLatestCommerceNews } from "../newsapi/newsapi";
+import { fetchLatestITNews, fetchLatestGardeningNews, fetchLatestCommerceNews, fetchLatestGeneralNews } from "../newsapi/newsapi";
 
 function News() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -11,43 +11,58 @@ function News() {
     document.cookie = `selectedItem=${item}; path=/`;
     setLoading(true); // Set loading to true when fetching new news
 
-    if (item === "Fachinformatiker") {
-      fetchLatestITNews()
-        .then((fetchedNews) => {
-          setNews({ ...news, [item]: fetchedNews });
-          setLoading(false); // Set loading to false after fetching news
-        })
-        .catch((error) => {
-          console.error("Error fetching IT news:", error);
-          setLoading(false); // Set loading to false in case of error
-        });
-    } else if (item === "Gärtner") {
-      fetchLatestGardeningNews()
-        .then((fetchedNews) => {
-          setNews({ ...news, [item]: fetchedNews });
-          setLoading(false); // Set loading to false after fetching news
-        })
-        .catch((error) => {
-          console.error("Error fetching gardening news:", error);
-          setLoading(false); // Set loading to false in case of error
-        });
-    } else if (item === "E-Commerce") {
-      fetchLatestCommerceNews()
-        .then((fetchedNews) => {
-          setNews({ ...news, [item]: fetchedNews });
-          setLoading(false); // Set loading to false after fetching news
-        })
-        .catch((error) => {
-          console.error("Error fetching ecommerce news:", error);
-          setLoading(false); // Set loading to false in case of error
-        });
-    } else {
-      setNews({ ...news, [item]: [] });
-      setLoading(false); // Set loading to false when no news is fetched
+    switch (item) {
+      case "Fachinformatiker":
+        fetchLatestITNews()
+          .then((fetchedNews) => {
+            setNews({ ...news, [item]: fetchedNews });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching IT news:", error);
+            setLoading(false);
+          });
+        break;
+      case "Gärtner":
+        fetchLatestGardeningNews()
+          .then((fetchedNews) => {
+            setNews({ ...news, [item]: fetchedNews });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching gardening news:", error);
+            setLoading(false);
+          });
+        break;
+      case "E-Commerce":
+        fetchLatestCommerceNews()
+          .then((fetchedNews) => {
+            setNews({ ...news, [item]: fetchedNews });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching ecommerce news:", error);
+            setLoading(false);
+          });
+        break;
+      case "Allgemein":
+        fetchLatestGeneralNews()
+          .then((fetchedNews) => {
+            setNews({ ...news, [item]: fetchedNews });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching general news:", error);
+            setLoading(false);
+          });
+        break;
+      default:
+        setNews({ ...news, [item]: [] });
+        setLoading(false);
     }
   };
 
-  const categories = ["Fachinformatiker", "Gärtner", "E-Commerce"];
+  const categories = ["Allgemein", "Fachinformatiker", "Gärtner", "E-Commerce"];
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -106,6 +121,8 @@ function News() {
                   <div className="news-container flex flex-col items-center"
                     style={{
                       color: "white",
+                      maxWidth: "800px",
+                      overflowY: "auto",
                     }}
                   >
                     {news[selectedItem].map((item, index) => (
@@ -113,7 +130,7 @@ function News() {
                         <h2>
                           <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: "white", fontSize: "1.5rem", fontWeight: "bold" }}>{item.title}</a>
                         </h2>
-                        <p style={{ color: "white", fontSize: "1rem", marginTop: "2rem", marginBottom: "2rem" }}>Description: {item.description}</p>
+                        <p style={{ color: "white", fontSize: "1rem", marginTop: "2rem", marginBottom: "2rem" }}> {item.description}</p>
                         <p style={{ color: "lightblue", fontSize: "1rem", fontWeight: "bold" }}>
                           <a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a>
                         </p>

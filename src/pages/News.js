@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchLatestITNews, fetchLatestGardeningNews, fetchLatestCommerceNews, fetchLatestGeneralNews } from "../newsapi/newsapi";
+import { fetchLatestITNews, fetchLatestGardeningNews, fetchLatestCommerceNews, fetchLatestGeneralNews, fetchLatestHackerNews } from "../newsapi/newsapi";
 
 function News() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [news, setNews] = useState({});
+  const [hackerNews, setHackerNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const handleItemClick = (item) => {
@@ -21,6 +22,14 @@ function News() {
           .catch((error) => {
             console.error("Error fetching IT news:", error);
             setLoading(false);
+          });
+
+        fetchLatestHackerNews()
+          .then((fetchedHackerNews) => {
+            setHackerNews(fetchedHackerNews);
+          })
+          .catch((error) => {
+            console.error("Error fetching Hacker News:", error);
           });
         break;
       case "Gärtner":
@@ -57,8 +66,16 @@ function News() {
           });
         break;
       default:
-        setNews({ ...news, [item]: [] });
-        setLoading(false);
+        fetchLatestGeneralNews()
+          .then((fetchedNews) => {
+            setNews({ ...news, [item]: fetchedNews });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching general news:", error);
+            setLoading(false);
+          });
+        break;
     }
   };
 
@@ -126,23 +143,39 @@ function News() {
                     }}
                   >
                     {news[selectedItem].map((item, index) => (
-                      <div key={index} style={{ margin: "3rem", marginLeft: "12rem", border: "1px solid white", borderRadius: "10px", backgroundColor: "black" }}>
+                      <div key={index} style={{ padding: "5px" ,margin: "3rem", marginLeft: "12rem", border: "1px solid white", borderRadius: "10px", backgroundColor: "black" }}>
                         <h2>
                           <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: "white", fontSize: "1.5rem", fontWeight: "bold" }}>{item.title}</a>
                         </h2>
                         <p style={{ color: "white", fontSize: "1rem", marginTop: "2rem", marginBottom: "2rem" }}> {item.description}</p>
-                        <p style={{ color: "lightblue", fontSize: "1rem", fontWeight: "bold" }}>
-                          <a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a>
+                        <p style={{ color: "lightblue", fontSize: "1.25rem", fontWeight: "bold" }}>
+                          <a href={item.url} target="_blank" rel="noopener noreferrer">Zum Artikel</a>
                         </p>
                       </div>
                     ))}
+                    {selectedItem === "Fachinformatiker" && (
+                      <div className="hacker-news-container">
+                        <h2 style={{ color: "white", fontSize: "1.5rem", marginTop: "3rem", fontWeight: "bold" }}></h2>
+                        {hackerNews.map((item, index) => (
+                          <div key={index} style={{ padding: "5px" ,margin: "3rem", marginLeft: "12rem", border: "1px solid white", borderRadius: "10px", backgroundColor: "black" }}>
+                            <h2>
+                              <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: "white", fontSize: "1.5rem", fontWeight: "bold" }}>{item.title}</a>
+                            </h2>
+                            <p style={{ color: "white", fontSize: "1rem", marginTop: "2rem", marginBottom: "2rem" }}> {item.text}</p>
+                            <p style={{ color: "lightblue", fontSize: "1.25rem", fontWeight: "bold" }}>
+                              <a href={item.url} target="_blank" rel="noopener noreferrer">Zum Artikel</a>
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  {news[selectedItem].length > 0 && (
+                  {news[selectedItem].length > 0 && news[selectedItem][0].imageUrl && (
                     <img
                       src={news[selectedItem][0].imageUrl}
                       alt="news-image"
                       className="ml-4 mt-2"
-                      style={{ color: "white", marginTop: "3rem", maxWidth: "700px", marginRight: "12rem", borderRadius: "10px", border: "1px solid white" }}
+                      style={{ color: "white", marginTop: "3rem", maxWidth: "500px", marginRight: "12rem", borderRadius: "10px", border: "1px solid white" }}
                     />
                   )}
                 </div>

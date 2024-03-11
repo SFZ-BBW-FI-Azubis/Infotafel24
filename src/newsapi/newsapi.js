@@ -111,3 +111,26 @@ export function fetchLatestGeneralNews() {
       throw error;
     });
 }
+
+export function fetchLatestHackerNews() {
+  const apiUrl = `https://hacker-news.firebaseio.com/v0/newstories.json`;
+
+  return axios
+    .get(apiUrl)
+    .then((response) => {
+      const latestItemIds = response.data.slice(0, 1); // Fetching the latest 10 items
+      const itemRequests = latestItemIds.map((itemId) =>
+        axios.get(`https://hacker-news.firebaseio.com/v0/item/${itemId}.json`)
+      );
+
+      return axios.all(itemRequests);
+    })
+    .then((responses) => {
+      const hackerNews = responses.map((response) => response.data);
+      return hackerNews;
+    })
+    .catch((error) => {
+      console.error("Error fetching Hacker News:", error);
+      throw error;
+    });
+}

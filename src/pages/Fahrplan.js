@@ -78,57 +78,70 @@ function Fahrplan() {
   }
 
   return (
-    <div className=" bg-site-background mx-auto px-4 text-white flex-grow w-screen justify-evenly overflow-hidden">
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
+    <div className=" bg-busplan bg-cover bg-center bg-no-repeat text-white flex-grow w-screen justify-evenly overflow-hidden">
+      <div className="bg-black flex bg-opacity-60 h-screen w-full flex-col margin-0">
+        <Accordion
+          expanded={expanded === "panel1"}
+          onChange={handleChange("panel1")}
         >
-          <div className="w-full flex justify-center items-center flex-col">
-            <p className="text-4xl">31</p>
-            <div className="flex flex-row justify-evenly w-full">
-            {busplanData["31"].departureTimes.slice(0, 4).map((time, index) => (
-      <div key={index} className="text-2xl flex justify-evenly items-center"> {/* Added 'flex' and 'items-center' classes */}
-        <p>{time}</p>
-        {index < 3 ? <Icon as={ArrowRight} w={6} h={6} className="ml-2" /> : null} {/* Added margin-left for spacing between text and icon */}
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
+            <div className="w-full flex justify-center items-center flex-col">
+              <p className="text-4xl">31</p>
+              <div className="flex flex-row justify-evenly w-full">
+                {busplanData["31"].departureTimes
+                  .slice(0, 4)
+                  .map((time, index) => (
+                    <div
+                      key={index}
+                      className="text-2xl flex justify-evenly items-center"
+                    >
+                      {" "}
+                      {/* Added 'flex' and 'items-center' classes */}
+                      <p>{time}</p>
+                      {index < 3 ? (
+                        <Icon as={ArrowRight} w={6} h={6} className="ml-2" />
+                      ) : null}{" "}
+                      {/* Added margin-left for spacing between text and icon */}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex justify-center">
+              <img src={fahrplan31} alt="" className="h-auto w-1/2"></img>
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={expanded === "panel2"}
+          onChange={handleChange("panel2")}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <div className="w-full flex justify-center items-center flex-col">
+              <p className="text-4xl">62</p>
+              <div className="flex flex-row">
+                {busplanData["62"].departureTimes
+                  .slice(0, 4)
+                  .map((time, index) => (
+                    <div key={index} className="mr-8 text-2xl">
+                      {time} <Icon as={ArrowRight} w={6} h={6} />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </AccordionSummary>
+          <AccordionDetails className="flex flex-row text-black"></AccordionDetails>
+        </Accordion>
       </div>
-    ))}
-            </div>
-          </div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <div className="flex justify-center">
-            <img src={fahrplan31} alt="" className="h-auto w-1/2"></img>
-          </div>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <div className="w-full flex justify-center items-center flex-col">
-            <p className="text-4xl">62</p>
-            <div className="flex flex-row">
-              {busplanData["62"].departureTimes.slice(0, 4).map((time, index) => (
-                <div key={index} className="mr-8 text-2xl">
-                  {time} <Icon as={ArrowRight} w={6} h={6} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className="flex flex-row text-black">
-        </AccordionDetails>
-      </Accordion>
     </div>
   );
 }

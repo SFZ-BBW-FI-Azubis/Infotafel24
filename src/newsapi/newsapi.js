@@ -118,16 +118,12 @@ export function fetchLatestHackerNews() {
   return axios
     .get(apiUrl)
     .then((response) => {
-      const latestItemIds = response.data.slice(0, 1); // Fetching the latest 10 items
-      const itemRequests = latestItemIds.map((itemId) =>
-        axios.get(`https://hacker-news.firebaseio.com/v0/item/${itemId}.json`)
-      );
-
-      return axios.all(itemRequests);
+      const latestItemId = response.data[0]; // Fetching the latest item
+      return axios.get(`https://hacker-news.firebaseio.com/v0/item/${latestItemId}.json`);
     })
-    .then((responses) => {
-      const hackerNews = responses.map((response) => response.data);
-      return hackerNews;
+    .then((response) => {
+      const hackerNews = response.data;
+      return [hackerNews]; // Wrap the result in an array to keep consistency with other news fetching functions
     })
     .catch((error) => {
       console.error("Error fetching Hacker News:", error);

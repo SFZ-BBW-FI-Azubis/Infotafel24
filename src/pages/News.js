@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { fetchLatestITNews, fetchLatestGardeningNews, fetchLatestCommerceNews, fetchLatestGeneralNews, fetchLatestHackerNews } from "../newsapi/newsapi";
+import {
+  fetchLatestITNews,
+  fetchLatestGardeningNews,
+  fetchLatestCommerceNews,
+  fetchLatestGeneralNews,
+  fetchLatestHackerNews,
+} from "../newsapi/newsapi";
 
 function News() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -95,7 +101,7 @@ function News() {
       // Fetch IT news by default if no item is selected
       fetchLatestITNews()
         .then((fetchedNews) => {
-          setNews({ ...news, "Fachinformatiker": fetchedNews });
+          setNews({ ...news, Fachinformatiker: fetchedNews });
           setLoading(false);
         })
         .catch((error) => {
@@ -110,7 +116,9 @@ function News() {
   }, []);
 
   return (
-    <div className={`min-h-screen flex flex-col bg-Fachinformatiker bg-cover bg-center bg-no-repeat relative`}>
+    <div
+      className={`min-h-screen flex flex-col bg-Fachinformatiker bg-cover bg-center bg-no-repeat relative`}
+    >
       <div className="bg-black flex bg-opacity-60 h-screen w-full flex-col">
         <div className="navbar flex justify-center">
           <div className="flex text-white border-b-2 border-b-white rounded-sm text-3xl font-thin pt-10 pb-2 flex-wrap">
@@ -132,10 +140,20 @@ function News() {
           {selectedItem && (
             <div className="items-container flex flex-col items-center">
               {loading ? (
-                <p style={{ color: "white", fontSize: "1.5rem", marginTop: "10rem", fontWeight: "bold" }}>Loading...</p>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "1.5rem",
+                    marginTop: "10rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Loading...
+                </p>
               ) : (
                 <div className="flex">
-                  <div className="news-container flex flex-col items-center"
+                  <div
+                    className="news-container flex flex-col items-center"
                     style={{
                       color: "white",
                       maxWidth: "800px",
@@ -143,41 +161,143 @@ function News() {
                     }}
                   >
                     {news[selectedItem].map((item, index) => (
-                      <div key={index} style={{ padding: "5px" ,margin: "3rem", marginLeft: "12rem", border: "1px solid white", borderRadius: "10px", backgroundColor: "black" }}>
+                      <div
+                        key={index}
+                        style={{
+                          padding: "5px",
+                          margin: "3rem",
+                          marginLeft: "12rem",
+                          border: "1px solid white",
+                          borderRadius: "10px",
+                          backgroundColor: "black",
+                        }}
+                      >
                         <h2>
-                          <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: "white", fontSize: "1.5rem", fontWeight: "bold" }}>{item.title}</a>
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: "white",
+                              fontSize: "1.5rem",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.title}
+                          </a>
                         </h2>
-                        <p style={{ color: "white", fontSize: "1rem", marginTop: "2rem", marginBottom: "2rem" }}> {item.description}</p>
-                        <p style={{ color: "lightblue", fontSize: "1.25rem", fontWeight: "bold" }}>
-                          <a href={item.url} target="_blank" rel="noopener noreferrer">Zum Artikel</a>
+                        <p
+                          style={{
+                            color: "white",
+                            fontSize: "1rem",
+                            marginTop: "2rem",
+                            marginBottom: "2rem",
+                          }}
+                        >
+                          {" "}
+                          {item.description}
+                        </p>
+                        <p
+                          style={{
+                            color: "lightblue",
+                            fontSize: "1.25rem",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Zum Artikel
+                          </a>
                         </p>
                       </div>
                     ))}
                     {selectedItem === "Fachinformatiker" && (
                       <div className="hacker-news-container">
-                        <h2 style={{ color: "white", fontSize: "1.5rem", marginTop: "3rem", fontWeight: "bold" }}></h2>
+                        <h2
+                          style={{
+                            color: "white",
+                            fontSize: "1.5rem",
+                            marginTop: "3rem",
+                            fontWeight: "bold",
+                          }}
+                        ></h2>
                         {hackerNews.map((item, index) => (
-                          <div key={index} style={{ padding: "5px" ,margin: "3rem", marginLeft: "12rem", border: "1px solid white", borderRadius: "10px", backgroundColor: "black" }}>
+                          <div
+                            key={index}
+                            style={{
+                              padding: "5px",
+                              margin: "3rem",
+                              marginLeft: "12rem",
+                              border: "1px solid white",
+                              borderRadius: "10px",
+                              backgroundColor: "black",
+                            }}
+                          >
                             <h2>
-                              <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: "white", fontSize: "1.5rem", fontWeight: "bold" }}>{item.title}</a>
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  color: "white",
+                                  fontSize: "1.5rem",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.title}
+                              </a>
                             </h2>
-                            <p style={{ color: "white", fontSize: "1rem", marginTop: "2rem", marginBottom: "2rem" }}> {item.text}</p>
-                            <p style={{ color: "lightblue", fontSize: "1.25rem", fontWeight: "bold" }}>
-                              <a href={item.url} target="_blank" rel="noopener noreferrer">Zum Artikel</a>
+                            <p
+                              style={{
+                                color: "white",
+                                fontSize: "1rem",
+                                marginTop: "2rem",
+                                marginBottom: "2rem",
+                              }}
+                            >
+                              {" "}
+                              {item.text}
+                            </p>
+                            <p
+                              style={{
+                                color: "lightblue",
+                                fontSize: "1.25rem",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Zum Artikel
+                              </a>
                             </p>
                           </div>
                         ))}
                       </div>
                     )}
                   </div>
-                  {news[selectedItem].length > 0 && news[selectedItem][0].imageUrl && (
-                    <img
-                      src={news[selectedItem][0].imageUrl}
-                      alt="news-image"
-                      className="ml-4 mt-2"
-                      style={{ color: "white", marginTop: "3rem", maxWidth: "500px", marginRight: "12rem", borderRadius: "10px", border: "1px solid white" }}
-                    />
-                  )}
+                  {news[selectedItem].length > 0 &&
+                    news[selectedItem][0].imageUrl && (
+                      <img
+                        src={news[selectedItem][0].imageUrl}
+                        alt="news-image"
+                        className="ml-4 mt-2"
+                        style={{
+                          maxWidth: "500px",
+                          objectFit: "cover",
+                          color: "white",
+                          marginTop: "3rem",
+                          marginRight: "12rem",
+                          borderRadius: "10px",
+                          border: "1px solid white",
+                        }}
+                      />
+                    )}
                 </div>
               )}
             </div>

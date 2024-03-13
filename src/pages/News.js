@@ -301,7 +301,7 @@ function News() {
                     news[selectedItem][0].imageUrl && (
                       <img
                         src={news[selectedItem][0].imageUrl}
-                        alt="news-image"
+                        alt="News Image, not able to be exlpained, somewhat random"
                         className="ml-4 mt-2"
                         style={{
                           maxWidth: "500px",

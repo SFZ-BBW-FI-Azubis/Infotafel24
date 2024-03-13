@@ -15,7 +15,7 @@ function News() {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
-    setLoading(true); // Set loading to true when fetching new news
+    setLoading(true);
 
     switch (item) {
       case "Fachinformatiker":
@@ -87,7 +87,12 @@ function News() {
   const categories = ["Allgemein", "Fachinformatiker", "Gärtner", "E-Commerce"];
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
 
     const cookies = document.cookie.split(";");
     const selectedItemCookie = cookies.find((cookie) =>
@@ -97,7 +102,6 @@ function News() {
       const selectedItem = selectedItemCookie.split("=")[1];
       setSelectedItem(selectedItem);
     } else {
-      // Fetch IT news by default if no item is selected
       fetchLatestITNews()
         .then((fetchedNews) => {
           setNews({ ...news, Fachinformatiker: fetchedNews });
@@ -110,9 +114,15 @@ function News() {
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      if (isMobile) {
+        document.body.style.overflow = "auto";
+      } else {
+        document.body.style.overflow = "auto";
+      }
     };
   }, []);
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     <div
@@ -155,7 +165,7 @@ function News() {
                     className="news-container flex flex-col items-center"
                     style={{
                       color: "white",
-                      Width: "800px",
+                      maxWidth: "800px",
                       overflowY: "auto",
                     }}
                   >
@@ -164,11 +174,15 @@ function News() {
                         key={index}
                         style={{
                           padding: "5px",
-                          margin: "3rem",
-                          marginLeft: "12rem",
+                          margin: "auto",
+                          marginTop: "3rem",
                           border: "1px solid white",
                           borderRadius: "10px",
                           backgroundColor: "black",
+                          textAlign: isMobile ? "center" : "left",
+                          width: isMobile ? "75%" : "auto",
+                          maxWidth: "600px",
+                          marginRight: isMobile ? "auto" : "2rem",
                         }}
                       >
                         <h2>
@@ -193,7 +207,6 @@ function News() {
                             marginBottom: "2rem",
                           }}
                         >
-                          {" "}
                           {item.description}
                         </p>
                         <p
@@ -214,20 +227,14 @@ function News() {
                       </div>
                     ))}
                     {selectedItem === "Fachinformatiker" && (
-                      <div
-                        className="hacker-news-container"
-                        style={{
-                          color: "white",
-                          Width: "800px",
-                          overflowY: "auto",
-                        }}
-                      >
+                      <div className="hacker-news-container">
                         <h2
                           style={{
                             color: "white",
                             fontSize: "1.5rem",
-                            marginTop: "3rem",
+                            marginTop: isMobile ? "0rem" : "3rem",
                             fontWeight: "bold",
+                            alignItems: "center",
                           }}
                         ></h2>
                         {hackerNews.map((item, index) => (
@@ -235,11 +242,14 @@ function News() {
                             key={index}
                             style={{
                               padding: "5px",
-                              margin: "3rem",
-                              marginLeft: "12rem",
                               border: "1px solid white",
+                              margin: "auto",
                               borderRadius: "10px",
                               backgroundColor: "black",
+                              textAlign: isMobile ? "center" : "left",
+                              width: isMobile ? "75%" : "auto",
+                              maxWidth: "600px",
+                              marginRight: isMobile ? "auto" : "2rem",
                             }}
                           >
                             <h2>
@@ -264,7 +274,6 @@ function News() {
                                 marginBottom: "2rem",
                               }}
                             >
-                              {" "}
                               {item.text}
                             </p>
                             <p
@@ -287,18 +296,19 @@ function News() {
                       </div>
                     )}
                   </div>
-                  {news[selectedItem].length > 0 &&
+                  {!isMobile &&
+                    news[selectedItem].length > 0 &&
                     news[selectedItem][0].imageUrl && (
                       <img
                         src={news[selectedItem][0].imageUrl}
                         alt="news-image"
-                        className="ml-4 mt-2 hidden md:block" // Hide on phone
+                        className="ml-4 mt-2"
                         style={{
                           maxWidth: "500px",
                           objectFit: "cover",
                           color: "white",
+                          margin: "auto",
                           marginTop: "3rem",
-                          marginRight: "12rem",
                           borderRadius: "10px",
                           border: "1px solid white",
                         }}

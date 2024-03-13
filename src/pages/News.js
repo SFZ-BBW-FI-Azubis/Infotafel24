@@ -15,7 +15,6 @@ function News() {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
-    document.cookie = `selectedItem=${item}; path=/`;
     setLoading(true); // Set loading to true when fetching new news
 
     switch (item) {
@@ -156,7 +155,7 @@ function News() {
                     className="news-container flex flex-col items-center"
                     style={{
                       color: "white",
-                      maxWidth: "800px",
+                      Width: "800px",
                       overflowY: "auto",
                     }}
                   >
@@ -215,7 +214,14 @@ function News() {
                       </div>
                     ))}
                     {selectedItem === "Fachinformatiker" && (
-                      <div className="hacker-news-container">
+                      <div
+                        className="hacker-news-container"
+                        style={{
+                          color: "white",
+                          Width: "800px",
+                          overflowY: "auto",
+                        }}
+                      >
                         <h2
                           style={{
                             color: "white",
@@ -286,7 +292,7 @@ function News() {
                       <img
                         src={news[selectedItem][0].imageUrl}
                         alt="news-image"
-                        className="ml-4 mt-2"
+                        className="ml-4 mt-2 hidden md:block" // Hide on phone
                         style={{
                           maxWidth: "500px",
                           objectFit: "cover",

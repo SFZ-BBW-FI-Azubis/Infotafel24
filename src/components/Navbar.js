@@ -11,7 +11,6 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  // Add 'text-yellow-500' to the classes array to apply the accent color
   return classes.filter(Boolean).join(' ');
 }
 
@@ -47,6 +46,7 @@ function Navbar() {
                   <Link 
                     key={item.name}
                     to={item.href}
+                    tabIndex={0} // Add tabIndex attribute
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-black hover:bg-gray-200 hover:text-gray-900',
                       'rounded-md px-3 py-2 text-xl font-semibold'
@@ -57,7 +57,7 @@ function Navbar() {
                   </Link>
                 );
               })}
-              <div className="flex items-center text-black text-3xl font-semibold ml-4">{currentTime}</div> {/* Updated line to have the same text color and size */}
+              <div className="flex items-center text-black text-3xl font-semibold ml-4">{currentTime}</div>
             </div>
           </div>
           <div className='sm:hidden'>
@@ -79,6 +79,7 @@ function Navbar() {
                   <Link 
                     key={item.name}
                     to={item.href}
+                    tabIndex={0} // Add tabIndex attribute
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-black hover:bg-gray-200 hover:text-gray-900',
                       'rounded-md px-3 py-2 text-xl font-semibold'

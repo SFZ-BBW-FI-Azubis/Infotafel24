@@ -60,16 +60,6 @@ function News() {
           });
         break;
       case "Allgemein":
-        fetchLatestGeneralNews()
-          .then((fetchedNews) => {
-            setNews({ ...news, [item]: fetchedNews });
-            setLoading(false);
-          })
-          .catch((error) => {
-            console.error("Error fetching general news:", error);
-            setLoading(false);
-          });
-        break;
       default:
         fetchLatestGeneralNews()
           .then((fetchedNews) => {
@@ -82,6 +72,10 @@ function News() {
           });
         break;
     }
+  };
+
+  const openUrl = (url) => {
+    window.open(url, "_blank");
   };
 
   const categories = ["Allgemein", "Fachinformatiker", "Gärtner", "E-Commerce"];
@@ -125,11 +119,9 @@ function News() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
-    <div
-      className={`min-h-screen flex flex-col bg-Fachinformatiker bg-cover bg-center bg-no-repeat relative`}
-    >
-      <div className="bg-black flex bg-opacity-60 h-screen w-full flex-col">
-        <div className="navbar flex justify-center">
+    <div className="min-h-screen bg-Fachinformatiker bg-cover bg-center bg-no-repeat relative">
+      <div className="bg-black bg-opacity-60 h-screen flex flex-col">
+        <nav className="navbar flex justify-center">
           <div className="flex text-white border-b-2 border-b-white rounded-sm text-3xl font-thin pt-10 pb-2 flex-wrap">
             {categories.map((category, index) => (
               <button
@@ -139,12 +131,13 @@ function News() {
                 }`}
                 onClick={() => handleItemClick(category)}
                 style={{ cursor: "pointer" }}
+                tabIndex="0" // Ensure keyboard accessibility
               >
                 {category}
               </button>
             ))}
           </div>
-        </div>
+        </nav>
         <div>
           {selectedItem && (
             <div className="items-container flex flex-col items-center">
@@ -186,18 +179,18 @@ function News() {
                         }}
                       >
                         <h2>
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <p
                             style={{
                               color: "white",
                               fontSize: "1.5rem",
                               fontWeight: "bold",
+                              background: "none",
+                              border: "none",
+                              cursor: "pointer",
                             }}
                           >
                             {item.title}
-                          </a>
+                          </p>
                         </h2>
                         <p
                           style={{
@@ -216,13 +209,19 @@ function News() {
                             fontWeight: "bold",
                           }}
                         >
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            style={{
+                              color: "lightblue",
+                              fontSize: "1.25rem",
+                              fontWeight: "bold",
+                              background: "none",
+                              border: "none",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => openUrl(item.url)}
                           >
                             Zum Artikel
-                          </a>
+                          </button>
                         </p>
                       </div>
                     ))}
@@ -253,18 +252,18 @@ function News() {
                             }}
                           >
                             <h2>
-                              <a
-                                href={item.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <p
                                 style={{
                                   color: "white",
                                   fontSize: "1.5rem",
                                   fontWeight: "bold",
+                                  background: "none",
+                                  border: "none",
+                                  cursor: "pointer",
                                 }}
                               >
                                 {item.title}
-                              </a>
+                              </p>
                             </h2>
                             <p
                               style={{
@@ -283,13 +282,19 @@ function News() {
                                 fontWeight: "bold",
                               }}
                             >
-                              <a
-                                href={item.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <button
+                                style={{
+                                  color: "lightblue",
+                                  fontSize: "1.25rem",
+                                  fontWeight: "bold",
+                                  background: "none",
+                                  border: "none",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => openUrl(item.url)}
                               >
-                                Zum Artikel
-                              </a>
+                                Zum HackerNews Artikel
+                              </button>
                             </p>
                           </div>
                         ))}

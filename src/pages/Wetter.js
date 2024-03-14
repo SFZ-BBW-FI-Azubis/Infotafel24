@@ -20,29 +20,23 @@ const debug = false;
  */
 function Wetter() {
   const [weatherData, setWeatherData] = useState(null);
-  const [currentWeatherData, setCurrentWeatherData] = useState(null);
-  const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [forecastResponse, currentResponse, hourlyResponse] =
+        const [weatherResponse] =
           await Promise.all([
-            axios.get(`${API_BASE_URL}/forecast`),
-            axios.get(`${API_BASE_URL}/current_weather`),
-            axios.get(`${API_BASE_URL}/hourly_forecast`),
+            axios.get(`${API_BASE_URL}/weather`),
+
           ]);
 
         if (debug) {
-          console.log("Forecast data:", forecastResponse.data);
-          console.log("Current weather data:", currentResponse.data);
-          console.log("Hourly weather data:", hourlyResponse.data);
+          console.log("Weather data:", weatherResponse.data);
+
         }
 
-        setWeatherData(forecastResponse.data);
-        setCurrentWeatherData(currentResponse.data);
-        setHourlyWeatherData(hourlyResponse.data);
+        setWeatherData(weatherResponse.data);
         setLoading(false); // Set loading to false when all data is fetched
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -54,7 +48,7 @@ function Wetter() {
     fetchData();
   }, []);
 
-  const { current: { time } = {} } = currentWeatherData || {};
+  const { current: { time } = {} } = weatherData || {};
 
   if (loading) {
     return (
@@ -64,7 +58,7 @@ function Wetter() {
     );
   }
 
-  if (!weatherData || !currentWeatherData || !hourlyWeatherData) {
+  if (!weatherData) {
     return (
       <div className="bg-weatherday bg-cover min-h-full h-screen flex flex-col justify-center items-center">
         <div className="text-white text-2xl">Error: Data not available</div>
@@ -76,10 +70,10 @@ function Wetter() {
     <div className="bg-weather-day bg-cover min-h-full h-screen flex flex-col flex-grow items-center">
       <div className="bg-black bg-opacity-80 flex h-full w-full justify-center items-center flex-col">
         {/* Current Weather */}
-        <CurrentWeatherComponent currentWeatherData={currentWeatherData} />
+        <CurrentWeatherComponent currentWeatherData={weatherData} />
         {/* HOURLY FORECAST */}
         <HourlyForecastComponent
-          hourlyWeatherData={hourlyWeatherData}
+          hourlyWeatherData={weatherData}
           currentTime={time}
         />
       </div>

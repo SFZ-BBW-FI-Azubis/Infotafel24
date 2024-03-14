@@ -9,6 +9,22 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 
 import fahrplan31 from "../assets/busplan/verlaufplan/31fahrplan.jpg";
+import { ThemeProvider } from "@emotion/react";
+import { SvgIcon, createTheme } from "@mui/material";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+
+const locations = {
+  "31": {
+    extra_times: [1, 2, 3, 5, 6, 7, 11, 12, 14, 15, 17, 18, 22],
+    locations: ["Rehabilitationszentrum für Blinde, Chemnitz", "Frauen- und Kinderklinik, Chemnitz", "Klinikum Flemmingstr., Chemnitz", "Talanger, Chemnitz", "Wattstraße, Chemnitz", "Kanalstraße, Chemnitz", "Leonhardtstraße, Chemnitz", "Henriettenstraße, Chemnitz", "Gerhart-Hauptmann-Platz, Chemnitz", "Marianne-Brandt-Straße, Chemnitz", "Reichsstraße, Chemnitz", "Znetralhaltestelle, Chemnitz"]
+  }
+}
 
 function Fahrplan() {
   const [busplanData, setBusplanData] = useState(null);
@@ -78,59 +94,139 @@ function Fahrplan() {
   }
 
   return (
-    <div className=" bg-site-background mx-auto px-4 text-white flex-grow w-screen justify-evenly overflow-hidden">
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <div className="w-full flex justify-center items-center flex-col">
-            <p className="text-4xl">31</p>
-            <div className="flex flex-row justify-evenly w-full">
-            {busplanData["31"].departureTimes.slice(0, 4).map((time, index) => (
-      <div key={index} className="text-2xl flex justify-evenly items-center"> {/* Added 'flex' and 'items-center' classes */}
-        <p>{time}</p>
-        {index < 3 ? <Icon as={ArrowRight} w={6} h={6} className="ml-2" /> : null} {/* Added margin-left for spacing between text and icon */}
-      </div>
-    ))}
-            </div>
-          </div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <div className="flex justify-center">
-            <img src={fahrplan31} alt="" className="h-auto w-1/2"></img>
-          </div>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <div className="w-full flex justify-center items-center flex-col">
-            <p className="text-4xl">62</p>
-            <div className="flex flex-row">
-              {busplanData["62"].departureTimes.slice(0, 4).map((time, index) => (
-                <div key={index} className="mr-8 text-2xl">
-                  {time} <Icon as={ArrowRight} w={6} h={6} />
+    <div className="mx-auto bg-gray-800 px-4 text-white flex-grow w-screen justify-evenly overflow-hidden">
+      <div className="flex w-full justify-center items-center flex-col">
+        <ThemeProvider theme={darkTheme}>
+          <Accordion
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
+            className="w-full sm:w-3/4"
+          >
+            <AccordionSummary
+              aria-controls="panel1d-content"
+              id="panel1d-header"
+            >
+              <div className="flex flex-col items-center w-full">
+                <p>Bus 31</p>
+                <div className="flex w-full justify-evenly items-center">
+                  {busplanData["31"].departureTimes
+                    .slice(0, 4)
+                    .map((time, index, array) => (
+                      <React.Fragment key={index}>
+                        <Typography>{time}</Typography>
+                        {index !== array.length - 1 && (
+                          <SvgIcon component={ArrowRight} />
+                        )}
+                      </React.Fragment>
+                    ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className="flex flex-row text-black">
-        </AccordionDetails>
-      </Accordion>
+                <div className="flex w-full justify-evenly items-center">
+                  {busplanData["31"].realTimes
+                    .slice(0, 4)
+                    .map((time, index, array) => {
+                      let typographyClass = "";
+                      if (busplanData["31"].departureTimes[index] !== time) {
+                        typographyClass = "text-red-500"; // Apply red color if the time is earlier
+                      } else {
+                        typographyClass = "text-green-500"; // Apply green color if the time is the same
+                      }
+
+                      return (
+                        <React.Fragment key={index}>
+                          <p className={typographyClass}>{time}</p>
+                          {index !== array.length - 1 && (
+                            <SvgIcon component={ArrowRight} />
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                </div>
+                <div className="grid grid-cols-7 grid-rows-1 w-full justify-evenly"></div>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className="flex flex-col space-y-4">
+                {locations["31"].locations.map((location, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="w-4 h-4 bg-white rounded-full"></div>
+                    <div className="ml-4">
+                      <Typography>{location}</Typography>
+                      <Typography>
+                        {addMinutesToTime(busplanData["31"].departureTimes[0], locations["31"].extra_times[index])}
+                      </Typography>
+                    </div>
+                  </div>
+                ))}
+                {/* Add more stations as needed */}
+              </div>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+          >
+            <AccordionSummary
+              aria-controls="panel2d-content"
+              id="panel2d-header"
+            >
+              <Typography>Collapsible Group Item #2</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}
+          >
+            <AccordionSummary
+              aria-controls="panel3d-content"
+              id="panel3d-header"
+            >
+              <Typography>Collapsible Group Item #3</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </ThemeProvider>
+      </div>
     </div>
   );
 }
+
+const addMinutesToTime = (timeString, extraMinutes) => {
+  // Split the time string into hours and minutes
+  const [hoursStr, minutesStr] = timeString.split(':');
+  let hours = parseInt(hoursStr);
+  let minutes = parseInt(minutesStr);
+
+  // Add the extra minutes
+  minutes += extraMinutes;
+
+  // Adjust hours if minutes exceed 60
+  hours += Math.floor(minutes / 60);
+  minutes = minutes % 60;
+
+  // Format hours and minutes
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
+
+  // Construct the new time string
+  return `${formattedHours}:${formattedMinutes}`;
+};
+
 
 export default Fahrplan;

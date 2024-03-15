@@ -5,10 +5,7 @@
 /.pnp
 .pnp.js
 
-./server/busplan_cache.json
-./server/current_weather_cache.json
-./server/forecast_cache.json
-./server/hourly_forecast_cache.json
+./server/*_cache.json
 
 # testing
 /coverage

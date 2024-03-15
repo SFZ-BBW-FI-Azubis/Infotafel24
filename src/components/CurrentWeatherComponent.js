@@ -9,10 +9,13 @@ import cloudsIcon from "../assets/weather/staticLogos/clouds.svg";
 
 import weatherInterpretationCodes from "../extras/weatherInterpretationCodes";
 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 function CurrentWeatherComponent({ currentWeatherData }) {
   return (
     <div className="flex flex-row justify-evenly w-screen sm:max-w-screen-lg sm:mb-52">
-      <div className="sm:mr-64">
+      <div className="sm:mr-64"
+      style={{maxWidth: isMobile ? "40%" : "",}}>
         {/* Display the weather description */}
         <h1 className="text-4xl font-bold text-white m-12">
           {currentWeatherData?.current
@@ -36,7 +39,8 @@ function CurrentWeatherComponent({ currentWeatherData }) {
       <div className="text-white flex flex-col">
         <div className="flex flex-col justify-evenly min-h-fit flex-grow">
           {/* Display the temperature */}
-          <p className="text-5xl flex flex-row">
+          <p className="flex flex-row"
+          style={{fontSize: isMobile ? "30px" : "50px",}}>
             <img
               src={thermometer}
               className="w-12 h-auto mr-10"
@@ -52,7 +56,8 @@ function CurrentWeatherComponent({ currentWeatherData }) {
             °C
           </p>
           {/* Display the wind speed */}
-          <p className="flex flex-row text-5xl">
+          <p className="flex flex-row"
+          style={{fontSize: isMobile ? "30px" : "50px",}}>
             <img
               src={S_wind}
               className="w-12 h-auto mr-10"
@@ -68,7 +73,8 @@ function CurrentWeatherComponent({ currentWeatherData }) {
             KM/h
           </p>
           {/* Display the wind direction */}
-          <p className="text-5xl flex flex-row">
+          <p className="flex flex-row"
+          style={{fontSize: isMobile ? "30px" : "50px",}}>
             <img
               src={compass}
               className="w-12 h-auto mr-10"
@@ -89,7 +95,8 @@ function CurrentWeatherComponent({ currentWeatherData }) {
             °
           </p>
           {/* Display the cloud cover */}
-          <p className="flex flex-row text-5xl">
+          <p className="flex flex-row"
+          style={{fontSize: isMobile ? "30px" : "50px",}}>
             <img
               src={cloudsIcon}
               className="w-12 h-auto mr-10"
@@ -105,7 +112,8 @@ function CurrentWeatherComponent({ currentWeatherData }) {
             %
           </p>
           {/* Display the rainfall */}
-          <p className="flex flex-row text-5xl">
+          <p className="flex flex-row"
+          style={{fontSize: isMobile ? "30px" : "50px",}}>
             <img
               src={rain}
               alt=""

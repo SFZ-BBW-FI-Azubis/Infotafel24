@@ -10,7 +10,7 @@ import News from './pages/News.js';
 
 function App() {  
   return (
-    <div className="max-h-screen min-h-screen flex flex-col">
+    <div className="overflow-x-hidden max-h-screen min-h-screen flex flex-col">
     <Router>
       <Navbar />
       <Routes>

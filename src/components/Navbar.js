@@ -29,6 +29,23 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const index = parseInt(event.key) - 1; // Convert key to index
+      if (!isNaN(index) && index >= 0 && index < navigation.length) {
+        const item = navigation[index];
+        window.location.href = item.href; // Redirect to the item's href
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+
   return (
     <div className='bg-yellow-500 w-screen'>
       <div className='mx-auto max-w-9xl px-2 sm:px-6 lg:px-8'>

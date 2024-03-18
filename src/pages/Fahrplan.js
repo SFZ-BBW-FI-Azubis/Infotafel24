@@ -108,7 +108,7 @@ function Fahrplan() {
   return (
     <div className="mx-auto bg-busplan bg-opacity-20 text-white flex-grow w-screen justify-evenly overflow-hidden">
       <div className="bg-black bg-opacity-70 h-screen w-screen flex flex-grow items-center">
-        <div className="flex w-full justify-center items-center flex-col">
+        <div className="flex w-full justify-center items-center flex-col ">
           <ThemeProvider theme={darkTheme}>
             <Accordion
               expanded={expanded === "panel1"}
@@ -158,63 +158,124 @@ function Fahrplan() {
                 </div>
               </AccordionSummary>
               <AccordionDetails>
-                <div className="flex flex-col space-y-4">
-                  {locations["31"].locations.map((location, index) => (
-                    <div key={index} className="flex items-center">
-                      <div className="w-4 h-4 bg-white rounded-full"></div>
-                      <div className="ml-4">
-                        <Typography>{location}</Typography>
-                        <Typography>
-                          {addMinutesToTime(
-                            busplanData["31"].departureTimes[0],
-                            locations["31"].extra_times[index]
-                          )}
-                        </Typography>
+                <div className="flex flex-row w-full justify-evenly">
+                  <div className="flex flex-col space-y-4">
+                    {locations["31"].locations.map((location, index) => (
+                      <div key={index} className="flex items-center">
+                        <div className="w-4 h-4 bg-white rounded-full"></div>
+                        <div className="ml-4">
+                          <Typography>{location}</Typography>
+                          <Typography>
+                            {addMinutesToTime(
+                              busplanData["31"].departureTimes[0],
+                              locations["31"].extra_times[index]
+                            )}
+                          </Typography>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  <div className="w-1/2">
+                    <img
+                      src={fahrplan31}
+                      alt="Fahrplan 31"
+                      className="w-full"
+                    />
+                  </div>
                   {/* Add more stations as needed */}
                 </div>
+                <p className="text-xs text-gray-400">
+                  *Alle Angaben sind unverbindlich. Es wird lediglich eine
+                  ungefähre Zeit angegeben. Busse können an bestimmten
+                  Haltestellen früher oder später eintreffen. Die angegebenen
+                  Zeiten sind daher nur Richtwerte.
+                </p>
               </AccordionDetails>
             </Accordion>
             <Accordion
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
+              className="w-full sm:w-3/4 rounded-2xl "
             >
               <AccordionSummary
-                aria-controls="panel2d-content"
-                id="panel2d-header"
+                aria-controls="panel1d-content"
+                id="panel1d-header"
               >
-                <Typography>Collapsible Group Item #2</Typography>
+                <div className="flex flex-col items-center w-full font-semibold">
+                  <p className="text-3xl pb-10 ">Bus 62</p>
+                  <div className="flex w-full justify-evenly items-center">
+                    {busplanData["62"].departureTimes
+                      .slice(0, 4)
+                      .map((time, index, array) => (
+                        <React.Fragment key={index}>
+                          <Typography>{time}</Typography>
+                          {index !== array.length - 1 && (
+                            <SvgIcon component={ArrowRight} />
+                          )}
+                        </React.Fragment>
+                      ))}
+                  </div>
+                  <div className="flex w-full justify-evenly items-center">
+                    {busplanData["62"].realTimes
+                      .slice(0, 4)
+                      .map((time, index, array) => {
+                        let typographyClass = "";
+                        if (busplanData["62"].departureTimes[index] !== time) {
+                          typographyClass = "text-red-500"; // Apply red color if the time is earlier
+                        } else {
+                          typographyClass = "text-green-500"; // Apply green color if the time is the same
+                        }
+
+                        return (
+                          <React.Fragment key={index}>
+                            {time !== null ? (
+                              <p className={typographyClass}>{time}</p>
+                            ) : (
+                              <p className={typographyClass}>N/A</p>
+                            )}
+                            {index !== array.length - 1 && (
+                              <SvgIcon component={ArrowRight} />
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                  </div>
+                  <div className="grid grid-cols-7 grid-rows-1 w-full justify-evenly"></div>
+                </div>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel3"}
-              onChange={handleChange("panel3")}
-            >
-              <AccordionSummary
-                aria-controls="panel3d-content"
-                id="panel3d-header"
-              >
-                <Typography>Collapsible Group Item #3</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                <div className="flex flex-row w-full justify-evenly">
+                  <div className="flex flex-col space-y-4">
+                    {locations["31"].locations.map((location, index) => (
+                      <div key={index} className="flex items-center">
+                        <div className="w-4 h-4 bg-white rounded-full"></div>
+                        <div className="ml-4">
+                          <Typography>{location}</Typography>
+                          <Typography>
+                            {addMinutesToTime(
+                              busplanData["31"].departureTimes[0],
+                              locations["31"].extra_times[index]
+                            )}
+                          </Typography>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="w-1/2">
+                    <img
+                      src={fahrplan31}
+                      alt="Fahrplan 31"
+                      className="w-full"
+                    />
+                  </div>
+                  {/* Add more stations as needed */}
+                </div>
+                <p className="text-xs text-gray-400">
+                  *Alle Angaben sind unverbindlich. Es wird lediglich eine
+                  ungefähre Zeit angegeben. Busse können an bestimmten
+                  Haltestellen früher oder später eintreffen. Die angegebenen
+                  Zeiten sind daher nur Richtwerte.
+                </p>
               </AccordionDetails>
             </Accordion>
           </ThemeProvider>

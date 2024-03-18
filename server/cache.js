@@ -109,10 +109,19 @@ function parseHTML(html) {
     );
 
     if (existingEntryIndex !== -1) {
-      data[existingEntryIndex].times.push({ time, realtime });
+      if (!realtime) {
+        data[existingEntryIndex].times.push({ time });
+      } else {
+        data[existingEntryIndex].times.push({ time, realtime });
+      }
     } else {
-      data.push({ lineNr, desc, times: [{ time, realtime }] });
+      if (!realtime) {
+        data.push({ lineNr, desc, times: [{ time }] });
+      } else {
+        data.push({ lineNr, desc, times: [{ time, realtime }] });
+      }
     }
+    console.log(data);
   });
 
   return data;
@@ -235,7 +244,7 @@ app.get("/cache/food", async (req, res) => {
     try {
       console.log("Fetching speiseplan data...");
       const response = await axios.get(
-        `https://kantine-chemnitz.de/speiseplan.html?kw=11&l=haus47`,
+        `https://www.kantine-chemnitz.de/speiseplan.html`,
       );
       const parsedFooddata = await parseFoodHTML(response.data);
 

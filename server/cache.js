@@ -233,7 +233,7 @@ app.get("/cache/food", async (req, res) => {
       const cachedData = JSON.parse(
         fs.readFileSync(CACHE_FILE_MEALPLAN, "utf8")
       );
-      res.json(cachedData.parsedFooddata);
+      res.json(cachedData);
       return;
     }
     const date = new Date();
@@ -262,6 +262,7 @@ app.get("/cache/food", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 //#endregion
 
 

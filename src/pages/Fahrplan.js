@@ -37,17 +37,9 @@ const locations = {
 
   62: {
     extra_times: [1, 2, 3, 5, 6, 7, 11, 12, 14, 15, 17, 18, 22],
-    locations: [
-      'DEBUG1',
-      'DEBUG2',
-      'DEBUG3',
-      'DEBUG4',
-      'DEBUG5',
-      'DEBUG6',
-    ]
-  }
+    locations: ["DEBUG1", "DEBUG2", "DEBUG3", "DEBUG4", "DEBUG5", "DEBUG6"],
+  },
 };
-
 
 function Fahrplan() {
   const [busplanData, setBusplanData] = useState(null);
@@ -72,7 +64,6 @@ function Fahrplan() {
     };
     fetchData();
   }, []);
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -106,34 +97,56 @@ function Fahrplan() {
   }
 
   return (
-    <div className="mx-auto bg-busplan bg-opacity-20 text-white flex-grow w-screen justify-evenly overflow-hidden">
-      <div className="bg-black bg-opacity-70 h-screen w-screen flex flex-grow items-center">
-        <div className="flex w-full justify-center items-center flex-col ">
+    <div
+      className="mx-auto bg-busplan bg-opacity-20 text-white flex-grow w-screen justify-evenly overflow-hidden"
+      tabIndex="0"
+    >
+      <div
+        className="bg-black bg-opacity-70 h-screen w-screen flex flex-grow items-center"
+        tabIndex="0"
+      >
+        <div
+          className="flex w-full justify-center items-center flex-col "
+          tabIndex="0"
+        >
           <ThemeProvider theme={darkTheme}>
             <Accordion
               expanded={expanded === "panel1"}
               onChange={handleChange("panel1")}
               className="w-full sm:w-3/4 rounded-2xl"
+              tabIndex="0"
             >
               <AccordionSummary
                 aria-controls="panel1d-content"
                 id="panel1d-header"
+                tabIndex="0"
               >
-                <div className="flex flex-col items-center w-full font-semibold">
-                  <p className="text-3xl pb-10 ">Bus 31</p>
-                  <div className="flex w-full justify-evenly items-center">
+                <div
+                  className="flex flex-col items-center w-full font-semibold"
+                  tabIndex="0"
+                >
+                  <p className="text-3xl pb-10 " tabIndex="0">
+                    Bus 31
+                  </p>
+                  <div
+                    className="flex w-full justify-evenly items-center"
+                    tabIndex="0"
+                  >
                     {busplanData["31"].departureTimes
                       .slice(0, 4)
                       .map((time, index, array) => (
                         <React.Fragment key={index}>
-                          <Typography>{time}</Typography>
+                          <Typography tabIndex="0">{time}</Typography>
                           {index !== array.length - 1 && (
-                            <SvgIcon component={ArrowRight} />
+                            <SvgIcon component={ArrowRight} tabIndex="0" />
                           )}
                         </React.Fragment>
                       ))}
                   </div>
-                  <div className="flex w-full justify-evenly items-center">
+                  <div
+                    className="flex w-full justify-evenly items-center"
+                    tabIndex="0"
+                  >
                     {busplanData["31"].realTimes
                       .slice(0, 4)
                       .map((time, index, array) => {
@@ -146,26 +159,41 @@ function Fahrplan() {
 
                         return (
                           <React.Fragment key={index}>
-                            <p className={typographyClass}>{time}</p>
+                            <p className={typographyClass} tabIndex="0">
+                              {time}
+                            </p>
                             {index !== array.length - 1 && (
-                              <SvgIcon component={ArrowRight} />
+                              <SvgIcon component={ArrowRight} tabIndex="0" />
                             )}
                           </React.Fragment>
                         );
                       })}
                   </div>
-                  <div className="grid grid-cols-7 grid-rows-1 w-full justify-evenly"></div>
+                  <div
+                    className="grid grid-cols-7 grid-rows-1 w-full justify-evenly"
+                    tabIndex="0"
+                  ></div>
                 </div>
               </AccordionSummary>
               <AccordionDetails>
-                <div className="flex flex-row w-full justify-evenly">
-                  <div className="flex flex-col space-y-4">
+                <div
+                  className="flex flex-row w-full justify-evenly"
+                  tabIndex="0"
+                >
+                  <div className="flex flex-col space-y-4" tabIndex="0">
                     {locations["31"].locations.map((location, index) => (
-                      <div key={index} className="flex items-center">
-                        <div className="w-4 h-4 bg-white rounded-full"></div>
-                        <div className="ml-4">
-                          <Typography>{location}</Typography>
-                          <Typography>
+                      <div
+                        key={index}
+                        className="flex items-center"
+                        tabIndex="0"
+                      >
+                        <div
+                          className="w-4 h-4 bg-white rounded-full"
+                          tabIndex="0"
+                        ></div>
+                        <div className="ml-4" tabIndex="0">
+                          <Typography tabIndex="0">{location}</Typography>
+                          <Typography tabIndex="0">
                             {addMinutesToTime(
                               busplanData["31"].realTimes[0],
                               locations["31"].extra_times[index]
@@ -175,7 +203,7 @@ function Fahrplan() {
                       </div>
                     ))}
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-1/2" tabIndex="0">
                     <img
                       src={fahrplan31}
                       alt="Fahrplan 31"
@@ -184,7 +212,7 @@ function Fahrplan() {
                   </div>
                   {/* Add more stations as needed */}
                 </div>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-400" tabIndex="0">
                   *Alle Angaben sind unverbindlich. Es wird lediglich eine
                   ungefähre Zeit angegeben. Busse können an bestimmten
                   Haltestellen früher oder später eintreffen. Die angegebenen
@@ -196,26 +224,39 @@ function Fahrplan() {
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
               className="w-full sm:w-3/4 rounded-2xl "
+              tabIndex="0"
             >
               <AccordionSummary
                 aria-controls="panel1d-content"
                 id="panel1d-header"
+                tabIndex="0"
               >
-                <div className="flex flex-col items-center w-full font-semibold">
-                  <p className="text-3xl pb-10 ">Bus 62</p>
-                  <div className="flex w-full justify-evenly items-center">
+                <div
+                  className="flex flex-col items-center w-full font-semibold"
+                  tabIndex="0"
+                >
+                  <p className="text-3xl pb-10 " tabIndex="0">
+                    Bus 62
+                  </p>
+                  <div
+                    className="flex w-full justify-evenly items-center"
+                    tabIndex="0"
+                  >
                     {busplanData["62"].departureTimes
                       .slice(0, 4)
                       .map((time, index, array) => (
                         <React.Fragment key={index}>
-                          <Typography>{time}</Typography>
+                          <Typography tabIndex="0">{time}</Typography>
                           {index !== array.length - 1 && (
-                            <SvgIcon component={ArrowRight} />
+                            <SvgIcon component={ArrowRight} tabIndex="0" />
                           )}
                         </React.Fragment>
                       ))}
                   </div>
-                  <div className="flex w-full justify-evenly items-center">
+                  <div
+                    className="flex w-full justify-evenly items-center"
+                    tabIndex="0"
+                  >
                     {busplanData["62"].realTimes
                       .slice(0, 4)
                       .map((time, index, array) => {
@@ -229,29 +270,43 @@ function Fahrplan() {
                         return (
                           <React.Fragment key={index}>
                             {time !== null ? (
-                              <p className={typographyClass}>{time}</p>
+                              <p className={typographyClass} tabIndex="0">
+                                {time}
+                              </p>
                             ) : (
-                              <p className={typographyClass}>N/A</p>
+                              <p className={typographyClass} tabIndex="0">
+                                N/A
+                              </p>
                             )}
                             {index !== array.length - 1 && (
-                              <SvgIcon component={ArrowRight} />
+                              <SvgIcon component={ArrowRight} tabIndex="0" />
                             )}
                           </React.Fragment>
                         );
                       })}
                   </div>
-                  <div className="grid grid-cols-7 grid-rows-1 w-full justify-evenly"></div>
+                  <div
+                    className="grid grid-cols-7 grid-rows-1 w-full justify-evenly"
+                    tabIndex="0"
+                  ></div>
                 </div>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails tabIndex="0">
                 <div className="flex flex-row w-full justify-evenly">
                   <div className="flex flex-col space-y-4">
                     {locations["62"].locations.map((location, index) => (
-                      <div key={index} className="flex items-center">
-                        <div className="w-4 h-4 bg-white rounded-full"></div>
-                        <div className="ml-4">
-                          <Typography>{location}</Typography>
-                          <Typography>
+                      <div
+                        key={index}
+                        className="flex items-center"
+                        tabIndex="0"
+                      >
+                        <div
+                          className="w-4 h-4 bg-white rounded-full"
+                          tabIndex="0"
+                        ></div>
+                        <div className="ml-4" tabIndex="0">
+                          <Typography tabIndex="0">{location}</Typography>
+                          <Typography tabIndex="0">
                             {addMinutesToTime(
                               busplanData["62"].realTimes[0],
                               locations["62"].extra_times[index]
@@ -261,7 +316,7 @@ function Fahrplan() {
                       </div>
                     ))}
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-1/2" tabIndex="0">
                     <img
                       src={fahrplan31}
                       alt="Fahrplan 31"
@@ -270,7 +325,7 @@ function Fahrplan() {
                   </div>
                   {/* Add more stations as needed */}
                 </div>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-400" tabIndex="0">
                   *Alle Angaben sind unverbindlich. Es wird lediglich eine
                   ungefähre Zeit angegeben. Busse können an bestimmten
                   Haltestellen früher oder später eintreffen. Die angegebenen

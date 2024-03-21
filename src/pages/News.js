@@ -177,6 +177,7 @@ function News() {
                           maxWidth: "600px",
                           marginRight: isMobile ? "auto" : "2rem",
                         }}
+                        tabIndex="0" // Ensure keyboard accessibility
                       >
                         <h2>
                           <p
@@ -199,6 +200,7 @@ function News() {
                             marginTop: "2rem",
                             marginBottom: "2rem",
                           }}
+                          tabIndex="0" // Ensure keyboard accessibility
                         >
                           {item.description}
                         </p>
@@ -219,6 +221,7 @@ function News() {
                               cursor: "pointer",
                             }}
                             onClick={() => openUrl(item.url)}
+                            tabIndex="0" // Ensure keyboard accessibility
                           >
                             Zum Artikel
                           </button>
@@ -250,6 +253,7 @@ function News() {
                               maxWidth: "600px",
                               marginRight: isMobile ? "auto" : "2rem",
                             }}
+                            tabIndex="0" // Ensure keyboard accessibility
                           >
                             <h2>
                               <p

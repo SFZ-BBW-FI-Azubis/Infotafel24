@@ -16,13 +16,13 @@ export default function DailyForecastComponent({weatherData}) {
               className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
             >
               {/* Display weekday */}
-              <h1 className="text-l mt-2 font-medium">
+              <h1 className="text-l mt-2 font-medium" tabIndex="0">
                 {new Date(dailyData * 1000).toLocaleDateString("de-DE", {
                   weekday: "long",
                 })}
               </h1>
               {/* Display date */}
-              <h1 className="text-sm">
+              <h1 className="text-sm" tabIndex="0">
                 {new Date(dailyData * 1000).toLocaleDateString()}
               </h1>
               {/* Display weather animation */}
@@ -34,7 +34,7 @@ export default function DailyForecastComponent({weatherData}) {
                 className="w-auto h-28"
               />
               {/* Display weather description */}
-              <h1 className="text-xl font-semibold m-1">
+              <h1 className="text-xl font-semibold m-1" tabIndex="0">
                 {
                   weatherInterpretationCodes[weatherData.daily.weather_code[index + 1]].day
                     .desc
@@ -43,7 +43,7 @@ export default function DailyForecastComponent({weatherData}) {
               <div className="flex flex-row items-center justify-evenly">
                 <div className="m-6 flex justify-between flex-col">
                   {/* Display maximum temperature */}
-                  <p className="font-bold text-xl flex flex-row">
+                  <p className="font-bold text-xl flex flex-row" tabIndex="0">
                     <img
                       src={thermometerMAX}
                       alt=""
@@ -58,7 +58,7 @@ export default function DailyForecastComponent({weatherData}) {
                 </div>
                 <div>
                   {/* Display minimum temperature */}
-                  <p className="font-bold text-xl flex flex-row">
+                  <p className="font-bold text-xl flex flex-row" tabIndex="0">
                     <img
                       src={thermometerMIN}
                       className="w-6 h-6"
@@ -79,3 +79,4 @@ export default function DailyForecastComponent({weatherData}) {
     </div>
   );
 }
+

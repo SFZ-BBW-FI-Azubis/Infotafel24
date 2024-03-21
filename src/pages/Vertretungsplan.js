@@ -51,7 +51,11 @@ function Vertretungsplan() {
   }, []);
 
   return (
-    <div className="bg-site-background min-h-screen flex flex-col">
+    <div
+    style={{
+      fontSize: "300px",
+    }}>Coming soon</div>
+    /*<div className="bg-site-background min-h-screen flex flex-col">
       <div className="navbar flex justify-center">
         <div className="flex text-white border-b-2 border-b-white rounded-sm text-3xl font-thin pt-10 pb-2 flex-wrap">
           {items.map((item, index) => (
@@ -99,7 +103,7 @@ function Vertretungsplan() {
           </tbody>
         </table>
       </div>
-    </div>
+    </div>*/
   );
 }
 

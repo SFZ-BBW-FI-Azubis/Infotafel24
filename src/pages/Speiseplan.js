@@ -18,7 +18,7 @@ function Speiseplan() {
         });*/
 
         setLoading(false);
-      } catch (error) {
+      } catch (error) {         
         console.error("Error fetching data:", error);
         setLoading(false);
       }

@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Icon from "@mui/material/Icon";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 
 import fahrplan31 from "../assets/busplan/verlaufplan/31fahrplan.jpg";
@@ -33,10 +31,23 @@ const locations = {
       "Gerhart-Hauptmann-Platz, Chemnitz",
       "Marianne-Brandt-Straße, Chemnitz",
       "Reichsstraße, Chemnitz",
-      "Znetralhaltestelle, Chemnitz",
+      "Zentralhaltestelle, Chemnitz",
     ],
   },
+
+  62: {
+    extra_times: [1, 2, 3, 5, 6, 7, 11, 12, 14, 15, 17, 18, 22],
+    locations: [
+      'DEBUG1',
+      'DEBUG2',
+      'DEBUG3',
+      'DEBUG4',
+      'DEBUG5',
+      'DEBUG6',
+    ]
+  }
 };
+
 
 function Fahrplan() {
   const [busplanData, setBusplanData] = useState(null);
@@ -62,17 +73,6 @@ function Fahrplan() {
     fetchData();
   }, []);
 
-  const ref = useRef(null);
-
-  const onWheel = (e) => {
-    const element = ref.current;
-    if (element) {
-      const delta = e.deltaY !== undefined ? e.deltaY : e.deltaX;
-      element.scrollTo({
-        left: element.scrollLeft + delta,
-      });
-    }
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -167,7 +167,7 @@ function Fahrplan() {
                           <Typography>{location}</Typography>
                           <Typography>
                             {addMinutesToTime(
-                              busplanData["31"].departureTimes[0],
+                              busplanData["31"].realTimes[0],
                               locations["31"].extra_times[index]
                             )}
                           </Typography>
@@ -246,15 +246,15 @@ function Fahrplan() {
               <AccordionDetails>
                 <div className="flex flex-row w-full justify-evenly">
                   <div className="flex flex-col space-y-4">
-                    {locations["31"].locations.map((location, index) => (
+                    {locations["62"].locations.map((location, index) => (
                       <div key={index} className="flex items-center">
                         <div className="w-4 h-4 bg-white rounded-full"></div>
                         <div className="ml-4">
                           <Typography>{location}</Typography>
                           <Typography>
                             {addMinutesToTime(
-                              busplanData["31"].departureTimes[0],
-                              locations["31"].extra_times[index]
+                              busplanData["62"].realTimes[0],
+                              locations["62"].extra_times[index]
                             )}
                           </Typography>
                         </div>

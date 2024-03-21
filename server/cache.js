@@ -194,7 +194,6 @@ async function parseFoodHTML(html) {
   $("div.speiseplan-lang .kw.slide:first").each((index, element) => {
     let i = 2;
     daysOfWeek.forEach((day) => {
-      const dayData = $(element).find(`div:contains(${day})`);
       const meals = { menus: { menuName: [], alergenes: [] }, soup: { soupName: [], alergens: [] } };
       const date = $(element).find(`.col${i}.row1 span`).text().trim().replace(/\s\s+/g, " ");
 
@@ -221,11 +220,6 @@ async function parseFoodHTML(html) {
   return data;
 }
 
-function getWeekNumber(date) {
-  const oneJan = new Date(date.getFullYear(), 0, 1);
-  const numberOfDays = Math.floor((date - oneJan) / (24 * 60 * 60 * 1000));
-  return Math.ceil((date.getDay() + 1 + numberOfDays) / 7);
-}
 
 app.get("/cache/food", async (req, res) => {
   try {
@@ -236,10 +230,6 @@ app.get("/cache/food", async (req, res) => {
       res.json(cachedData.parsedFooddata);
       return;
     }
-    const date = new Date();
-    const token = "k1biqe1x82qxr62ossx0dvfs0ycxgeo3";
-    const year = date.getFullYear();
-    const week = getWeekNumber(date);
 
     try {
       console.log("Fetching speiseplan data...");

@@ -27,7 +27,6 @@ function Speiseplan() {
     fetchData();
   }, []);
 
-  const dateString = "13.03.24"
 
   let mealIndex = 0;
 
@@ -40,7 +39,7 @@ function Speiseplan() {
               className="flex flex-col bg-gray-700 p-4 m-4 rounded-lg"
               key={day.date}
             >
-              <h1 className="text-2xl font-bold">{day.date}</h1>
+              <h1 className="text-2xl font-bold">{console.log(day)}</h1>
               <div className="flex flex-col">
                 {day.meals.menus.menuName.map((meal) => (
                   <div className="flex flex-row" key={mealIndex++}>

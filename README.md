@@ -25,4 +25,4 @@ Erstelle ein Wireframe für die neue Infotafel. Implementiere die einzelnen Seit
 
 Kommunikation:
 
-Die Kommunikation erfolgt über Teams und Notion.
+Die Kommunikation erfolgt über Teams.
